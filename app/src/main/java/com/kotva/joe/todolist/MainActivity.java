@@ -1,13 +1,10 @@
 package com.kotva.joe.todolist;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.DatePickerDialog;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -53,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private String itemText;
     private String m_Text;
 
-    private AlarmManager alarmManager;
-    private PendingIntent alarmIntent;
-
     DatabaseHelper listDB;
 
     private String[] myDataArray;
@@ -89,12 +83,6 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.HOUR_OF_DAY, 7);
         calendar.set(Calendar.MINUTE, 45);
 
-        Intent intent = new Intent(getApplicationContext(), Notification_receiver.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
         // database stuff
         listDB = new DatabaseHelper(this);
